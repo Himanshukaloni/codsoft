@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobBoard - Find Your Dream Job</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="navbar-logo">JobBoard</a>
+      <ul class="navbar-menu" id="authLinks">
+        <li><a href="jobs.html">Jobs</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html" class="navbar-btn">Register</a></li>
+      </ul>
+    </div>
+  </nav>
+
+   Hero Section 
+  <section class="hero">
+    <div class="container">
+      <h1>Find Your Dream Job Today</h1>
+      <p>Connect with top employers and discover opportunities that match your skills</p>
+      <div class="hero-search">
+        <input type="text" id="heroSearchInput" placeholder="Job title, keywords, or company">
+        <input type="text" id="heroLocationInput" placeholder="Location">
+        <button id="heroSearchBtn" onclick="searchJobs()">Search Jobs</button>
+      </div>
+    </div>
+  </section>
+
+   Main Content 
+  <div class="container">
+    <div style="text-align: center; margin: 60px 0 40px;">
+      <h2 style="font-size: 36px; margin-bottom: 15px;">How It Works</h2>
+      <p style="color: #666; font-size: 18px;">Join thousands of job seekers and employers</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 60px;">
+      <div class="card" style="text-align: center;">
+        <div style="font-size: 48px; color: #0a66c2; margin-bottom: 15px;">👤</div>
+        <h3 style="margin-bottom: 10px;">Create Your Profile</h3>
+        <p style="color: #666;">Sign up as a student and build your professional profile</p>
+      </div>
+      <div class="card" style="text-align: center;">
+        <div style="font-size: 48px; color: #0a66c2; margin-bottom: 15px;">🔍</div>
+        <h3 style="margin-bottom: 10px;">Browse Jobs</h3>
+        <p style="color: #666;">Explore thousands of job opportunities from top companies</p>
+      </div>
+      <div class="card" style="text-align: center;">
+        <div style="font-size: 48px; color: #0a66c2; margin-bottom: 15px;">📝</div>
+        <h3 style="margin-bottom: 10px;">Apply with Ease</h3>
+        <p style="color: #666;">Submit your application with just one click</p>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin: 60px 0 40px;">
+      <h2 style="font-size: 36px; margin-bottom: 15px;">For Employers</h2>
+      <p style="color: #666; font-size: 18px;">Post jobs and find the perfect candidates</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 60px;">
+      <div class="card" style="text-align: center;">
+        <div style="font-size: 48px; color: #057642; margin-bottom: 15px;">📢</div>
+        <h3 style="margin-bottom: 10px;">Post Jobs</h3>
+        <p style="color: #666;">Create compelling job listings in minutes</p>
+      </div>
+      <div class="card" style="text-align: center;">
+        <div style="font-size: 48px; color: #057642; margin-bottom: 15px;">👥</div>
+        <h3 style="margin-bottom: 10px;">Review Applicants</h3>
+        <p style="color: #666;">Access detailed profiles and resumes</p>
+      </div>
+      <div class="card" style="text-align: center;">
+        <div style="font-size: 48px; color: #057642; margin-bottom: 15px;">✅</div>
+        <h3 style="margin-bottom: 10px;">Hire Talent</h3>
+        <p style="color: #666;">Manage applications and hire the best candidates</p>
+      </div>
+    </div>
+
+    <div class="card" style="text-align: center; padding: 60px 40px; background: linear-gradient(135deg, #0a66c2 0%, #004182 100%); color: white;">
+      <h2 style="font-size: 36px; margin-bottom: 15px; color: white;">Ready to Get Started?</h2>
+      <p style="font-size: 18px; margin-bottom: 30px; opacity: 0.9;">Join JobBoard today and take the next step in your career</p>
+      <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+        <a href="register.html" class="btn" style="background: white; color: #0a66c2; font-size: 16px; padding: 12px 30px;">Sign Up as Student</a>
+        <a href="register.html" class="btn btn-outline" style="border-color: white; color: white; font-size: 16px; padding: 12px 30px;">Sign Up as Recruiter</a>
+      </div>
+    </div>
+  </div>
+
+  Footer
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 JobBoard. All rights reserved.</p>
+      <p style="margin-top: 10px; font-size: 14px;">Built with Node.js, Express, MongoDB, and Vanilla JavaScript</p>
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script>
+    function searchJobs() {
+      const search = document.getElementById('heroSearchInput').value;
+      const location = document.getElementById('heroLocationInput').value;
+      window.location.href = `jobs.html?search=${encodeURIComponent(search)}&location=${encodeURIComponent(location)}`;
+    }
+    
+     Allow 
+    document.getElementById('heroSearchInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') searchJobs();
+    });
+    document.getElementById('heroLocationInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') searchJobs();
+    });
+  </script>
+</body>
+</html>

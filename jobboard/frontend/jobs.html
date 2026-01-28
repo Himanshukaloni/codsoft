@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse Jobs - JobBoard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+   Navbar 
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="navbar-logo">JobBoard</a>
+      <ul class="navbar-menu" id="authLinks">
+        <li><a href="jobs.html" class="active">Jobs</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html" class="navbar-btn">Register</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  Page Header 
+  <div style="background-color: #0a66c2; color: white; padding: 40px 20px; text-align: center;">
+    <div class="container">
+      <h1 style="font-size: 36px; margin-bottom: 10px; color: white;">Explore Job Opportunities</h1>
+      <p style="font-size: 18px; opacity: 0.9;">Find the perfect job that matches your skills and interests</p>
+    </div>
+  </div>
+
+   Main Content 
+  <div class="container">
+     Filters 
+    <div class="filters">
+      <input type="text" id="searchInput" placeholder="Search by title, company, or keywords">
+      <input type="text" id="locationInput" placeholder="Location">
+      <select id="jobTypeFilter">
+        <option value="">All Job Types</option>
+        <option value="Full-time">Full-time</option>
+        <option value="Part-time">Part-time</option>
+        <option value="Contract">Contract</option>
+        <option value="Internship">Internship</option>
+        <option value="Remote">Remote</option>
+      </select>
+      <button id="searchBtn" class="btn btn-primary">Search</button>
+    </div>
+
+     Loading State
+    <div id="loading" class="loading hidden">
+      <div class="spinner"></div>
+      <p>Loading jobs...</p>
+    </div>
+
+    Jobs Grid
+    <div class="jobs-grid" id="jobsGrid">
+       Jobs will be dynamically loaded here 
+    </div>
+  </div>
+
+   Job Details Modal 
+  <div id="jobModal" class="modal">
+    <div class="modal-content" id="jobModalContent">
+       Modal content will be dynamically loaded
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/jobs.js"></script>
+</body>
+</html>

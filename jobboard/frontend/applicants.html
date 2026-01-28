@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Applicants - JobBoard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  Navbar
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="navbar-logo">JobBoard</a>
+      <ul class="navbar-menu" id="authLinks">
+        <li><a href="jobs.html">Jobs</a></li>
+        <li><a href="recruiter-dashboard.html">Dashboard</a></li>
+        <li><a href="#" class="navbar-btn logout-btn" id="logoutBtn">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  Main Content 
+  <div class="container">
+    <div style="margin-bottom: 30px;">
+      <h1 style="font-size: 32px; margin-bottom: 10px;">Job Applicants</h1>
+      <p style="color: #666;">Review and manage applications for this position</p>
+    </div>
+
+     Job Info 
+    <div id="jobInfo">
+      Job details will be loaded here
+    </div>
+
+     Applicants List 
+    <div id="applicantsContainer">
+       Applicants will be loaded here 
+    </div>
+  </div>
+
+  Applicant Details Modal 
+  <div id="applicantModal" class="modal">
+    <div class="modal-content" id="applicantModalContent">
+      Modal content will be dynamically loaded
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/applicants.js"></script>
+</body>
+</html>

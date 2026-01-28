@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard - JobBoard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+   Navbar 
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="navbar-logo">JobBoard</a>
+      <ul class="navbar-menu" id="authLinks">
+        <li><a href="jobs.html">Jobs</a></li>
+        <li><a href="student-dashboard.html" class="active">Dashboard</a></li>
+        <li><a href="#" class="navbar-btn logout-btn" id="logoutBtn">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  Dashboard
+  <div class="container">
+    <div class="dashboard">
+      Sidebar 
+      <aside class="sidebar">
+        <div style="text-align: center; margin-bottom: 20px;">
+          <img id="profilePhotoImg" src="https://via.placeholder.com/150?text=U" alt="Profile" class="profile-photo" style="width: 100px; height: 100px;">
+          <h3 style="margin-top: 10px; margin-bottom: 5px;" id="welcomeName">Student</h3>
+        </div>
+        <ul class="sidebar-menu">
+          <li><a href="#" onclick="showSection('profile')" class="active">👤 My Profile</a></li>
+          <li><a href="#" onclick="showSection('applications')">📝 My Applications</a></li>
+          <li><a href="jobs.html">🔍 Browse Jobs</a></li>
+        </ul>
+      </aside>
+
+       Main Content 
+      <main class="dashboard-content">
+         Profile Section 
+        <div id="profileSection" class="dashboard-section">
+          <div class="dashboard-header">
+            <h2>My Profile</h2>
+          </div>
+
+          <form id="profileForm">
+            <div class="profile-section">
+              <div class="profile-photo-container">
+                <img id="profilePhotoImg" src="https://via.placeholder.com/150?text=U" alt="Profile" class="profile-photo">
+                <div class="file-input-wrapper">
+                  <label for="profilePhotoInput" class="file-input-label">
+                    📷 Upload Photo
+                  </label>
+                  <input type="file" id="profilePhotoInput" accept="image/*">
+                </div>
+              </div>
+
+              <div class="profile-details">
+                <div class="form-group">
+                  <label for="name">Full Name</label>
+                  <input type="text" id="name" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" disabled style="background: #f3f2ef;">
+                </div>
+                
+                <div class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <input type="tel" id="phone" placeholder="Enter phone number">
+                </div>
+                
+                <div class="form-group" style="grid-column: 1 / -1;">
+                  <label for="skills">Skills</label>
+                  <input type="text" id="skills" placeholder="e.g., JavaScript, React, Node.js">
+                  <small>Separate skills with commas</small>
+                </div>
+                
+                <div class="form-group" style="grid-column: 1 / -1;">
+                  <label for="bio">Bio</label>
+                  <textarea id="bio" placeholder="Tell us about yourself"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="resumeInput">Resume (PDF only)</label>
+              <div id="resumeStatus" style="margin-bottom: 10px;"></div>
+              <div class="file-input-wrapper">
+                <label for="resumeInput" class="file-input-label">
+                  📄 Upload Resume
+                </label>
+                <input type="file" id="resumeInput" accept=".pdf">
+              </div>
+              <small>Upload your resume in PDF format (max 10MB)</small>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Update Profile</button>
+          </form>
+        </div>
+
+        Applications Section 
+        <div id="applicationsSection" class="dashboard-section hidden">
+          <div class="dashboard-header">
+            <h2>My Applications</h2>
+            <a href="jobs.html" class="btn btn-primary">Browse More Jobs</a>
+          </div>
+          
+          <div id="applicationsContainer">
+            Applications will be loaded here 
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/student-dashboard.js"></script>
+</body>
+</html>
