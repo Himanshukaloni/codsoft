@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizSphere - Create & Take Quizzes</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+   
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <span class="logo-icon">◐</span>
+                <span class="logo-text">QuizSphere</span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link" data-page="home">Home</a>
+                <a href="#" class="nav-link" data-page="browse">Browse Quizzes</a>
+                <a href="#" class="nav-link" data-page="create" id="createLink" style="display: none;">Create Quiz</a>
+                <a href="#" class="nav-link" data-page="my-quizzes" id="myQuizzesLink" style="display: none;">My Quizzes</a>
+            </div>
+            <div class="nav-auth">
+                <button class="btn btn-ghost" id="loginBtn">Login</button>
+                <button class="btn btn-primary" id="signupBtn">Sign Up</button>
+                <div class="user-menu" id="userMenu" style="display: none;">
+                    <span class="user-name" id="userName"></span>
+                    <button class="btn btn-ghost" id="logoutBtn">Logout</button>
+                </div>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+ 
+    <main class="main-content">
+        
+        <section id="homePage" class="page active">
+            <div class="hero">
+                <div class="container hero-container">
+                    <div class="hero-content">
+                        <h1 class="hero-title">
+                            <span class="title-line">Test Knowledge.</span>
+                            <span class="title-line">Share Wisdom.</span>
+                            <span class="title-line accent">Build Community.</span>
+                        </h1>
+                        <p class="hero-description">
+                            Create engaging quizzes in minutes or challenge yourself with thousands of
+                            user-created quizzes across every topic imaginable.
+                        </p>
+                        <div class="hero-actions">
+                            <button class="btn btn-large btn-primary" data-page="browse">Explore Quizzes</button>
+                            <button class="btn btn-large btn-outline" id="heroCreateBtn">Create Quiz</button>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="floating-card card-1">
+                            <div class="card-icon">?</div>
+                            <div class="card-text">Science</div>
+                        </div>
+                        <div class="floating-card card-2">
+                            <div class="card-icon">♫</div>
+                            <div class="card-text">Music</div>
+                        </div>
+                        <div class="floating-card card-3">
+                            <div class="card-icon">⚡</div>
+                            <div class="card-text">History</div>
+                        </div>
+                        <div class="sphere"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="features-section">
+                    <h2 class="section-title">Why QuizSphere?</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">✦</div>
+                            <h3 class="feature-title">Easy Creation</h3>
+                            <p class="feature-description">Build beautiful quizzes with our intuitive interface in just minutes.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">◈</div>
+                            <h3 class="feature-title">Instant Feedback</h3>
+                            <p class="feature-description">Get immediate results and see how you stack up against others.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">◉</div>
+                            <h3 class="feature-title">Track Progress</h3>
+                            <p class="feature-description">Monitor your performance and watch your knowledge grow over time.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    
+        <section id="browsePage" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">Explore Quizzes</h1>
+                    <div class="search-bar">
+                        <input type="text" class="search-input" id="searchInput" placeholder="Search quizzes...">
+                        <button class="search-btn">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM18 18l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="quiz-grid" id="quizGrid">
+                    <div class="loading">Loading quizzes...</div>
+                </div>
+            </div>
+        </section>
+
+       
+        <section id="createPage" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">Create New Quiz</h1>
+                    <p class="page-subtitle">Share your knowledge with the community</p>
+                </div>
+                
+                <form id="createQuizForm" class="quiz-form">
+                    <div class="form-section">
+                        <h2 class="form-section-title">Quiz Details</h2>
+                        <div class="form-group">
+                            <label class="form-label">Quiz Title *</label>
+                            <input type="text" class="form-input" id="quizTitle" required 
+                                   placeholder="Enter an engaging title...">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-input form-textarea" id="quizDescription" rows="3"
+                                      placeholder="Describe what this quiz covers..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Time Limit (minutes, 0 for no limit)</label>
+                            <input type="number" class="form-input" id="quizTimeLimit" min="0" value="0">
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <div class="section-header">
+                            <h2 class="form-section-title">Questions</h2>
+                            <button type="button" class="btn btn-primary btn-small" id="addQuestionBtn">
+                                + Add Question
+                            </button>
+                        </div>
+                        <div id="questionsContainer"></div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-ghost" data-page="browse">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create Quiz</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+       
+        <section id="myQuizzesPage" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">My Quizzes</h1>
+                    <button class="btn btn-primary" data-page="create">+ Create New Quiz</button>
+                </div>
+                <div class="quiz-grid" id="myQuizzesGrid">
+                    <div class="loading">Loading your quizzes...</div>
+                </div>
+            </div>
+        </section>
+
+      
+        <section id="takePage" class="page">
+            <div class="container quiz-container">
+                <div class="quiz-header" id="quizHeader"></div>
+                <div class="quiz-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span id="currentQuestion">1</span> / <span id="totalQuestions">10</span>
+                    </div>
+                </div>
+                <div class="quiz-content">
+                    <div id="questionContainer"></div>
+                </div>
+                <div class="quiz-actions">
+                    <button class="btn btn-ghost" id="prevBtn" disabled>Previous</button>
+                    <button class="btn btn-primary" id="nextBtn">Next</button>
+                    <button class="btn btn-primary" id="submitQuizBtn" style="display: none;">Submit Quiz</button>
+                </div>
+            </div>
+        </section>
+
+      
+        <section id="resultsPage" class="page">
+            <div class="container results-container">
+                <div class="results-card">
+                    <div class="results-header">
+                        <h1 class="results-title">Quiz Complete!</h1>
+                        <div class="results-score">
+                            <div class="score-circle">
+                                <svg class="score-ring" viewBox="0 0 200 200">
+                                    <circle cx="100" cy="100" r="90" class="score-ring-bg"/>
+                                    <circle cx="100" cy="100" r="90" class="score-ring-fill" id="scoreRing"/>
+                                </svg>
+                                <div class="score-text">
+                                    <span class="score-percentage" id="scorePercentage">0%</span>
+                                    <span class="score-label" id="scoreLabel">0/0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="results-details" id="resultsDetails"></div>
+                    
+                    <div class="results-actions">
+                        <button class="btn btn-primary" data-page="browse">Browse More Quizzes</button>
+                        <button class="btn btn-outline" data-page="home">Back to Home</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+  
+    <div class="modal" id="authModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            
+          
+            <div class="auth-form" id="loginForm">
+                <h2 class="auth-title">Welcome Back</h2>
+                <p class="auth-subtitle">Sign in to create and take quizzes</p>
+                <form id="loginFormElement">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-input" id="loginPassword" required>
+                    </div>
+                    <div class="error-message" id="loginError"></div>
+                    <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+                </form>
+                <p class="auth-switch">
+                    Don't have an account? 
+                    <a href="#" id="switchToSignup">Sign up</a>
+                </p>
+            </div>
+
+           
+            <div class="auth-form" id="signupForm" style="display: none;">
+                <h2 class="auth-title">Join QuizSphere</h2>
+                <p class="auth-subtitle">Start creating and taking quizzes today</p>
+                <form id="signupFormElement">
+                    <div class="form-group">
+                        <label class="form-label">Username</label>
+                        <input type="text" class="form-input" id="signupUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" id="signupEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-input" id="signupPassword" required minlength="6">
+                    </div>
+                    <div class="error-message" id="signupError"></div>
+                    <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+                </form>
+                <p class="auth-switch">
+                    Already have an account? 
+                    <a href="#" id="switchToLogin">Sign in</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
