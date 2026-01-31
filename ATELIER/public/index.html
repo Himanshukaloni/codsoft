@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATELIER - Modern E-Commerce</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-logo">ATELIER</div>
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">ATELIER</div>
+            <div class="nav-links">
+                <a href="/" class="nav-link active">Shop</a>
+                <a href="/dashboard" class="nav-link" id="dashboardLink" style="display: none;">My Orders</a>
+                <a href="/admin" class="nav-link" id="adminLink" style="display: none;">Admin</a>
+            </div>
+            <div class="nav-actions">
+                <button class="nav-icon" id="userBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </button>
+                <button class="nav-icon cart-btn" id="cartBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="hero-title-line">Curated</span>
+                    <span class="hero-title-line">Collections</span>
+                </h1>
+                <p class="hero-subtitle">Discover timeless pieces crafted with precision</p>
+            </div>
+            <div class="hero-image">
+                <div class="hero-image-placeholder"></div>
+            </div>
+        </section>
+
+        <!-- Filters Section -->
+        <section class="filters-section">
+            <div class="filters-container">
+                <div class="filters-header">
+                    <h2 class="filters-title">Browse Collection</h2>
+                    <div class="filters-controls">
+                        <select class="filter-select" id="sortSelect">
+                            <option value="featured">Featured</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="newest">Newest</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="filters-tags">
+                    <button class="filter-tag active" data-category="all">All</button>
+                    <button class="filter-tag" data-category="clothing">Clothing</button>
+                    <button class="filter-tag" data-category="accessories">Accessories</button>
+                    <button class="filter-tag" data-category="shoes">Shoes</button>
+                    <button class="filter-tag" data-category="bags">Bags</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Grid -->
+        <section class="products-section">
+            <div class="products-grid" id="productsGrid"></div>
+            <div class="loading-products" id="loadingProducts">
+                <div class="spinner"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-overlay" id="cartOverlay"></div>
+        <div class="cart-panel">
+            <div class="cart-header">
+                <h3 class="cart-title">Shopping Cart</h3>
+                <button class="cart-close" id="cartClose">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="cart-items" id="cartItems"></div>
+            <div class="cart-empty" id="cartEmpty">
+                <p>Your cart is empty</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Subtotal</span>
+                    <span class="cart-total-amount" id="cartTotal">$0.00</span>
+                </div>
+                <button class="cart-checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div class="modal" id="authModal">
+        <div class="modal-overlay" id="authOverlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="authClose">&times;</button>
+            
+            <div class="auth-form" id="loginForm">
+                <h2 class="auth-title">Welcome Back</h2>
+                <p class="auth-subtitle">Sign in to your account</p>
+                <form id="loginFormElement">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="auth-submit">Sign In</button>
+                </form>
+                <p class="auth-switch">
+                    Don't have an account? 
+                    <a href="#" id="showRegister">Create one</a>
+                </p>
+            </div>
+
+            <div class="auth-form hidden" id="registerForm">
+                <h2 class="auth-title">Create Account</h2>
+                <p class="auth-subtitle">Join our community</p>
+                <form id="registerFormElement">
+                    <div class="form-group">
+                        <label for="registerName">Full Name</label>
+                        <input type="text" id="registerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email</label>
+                        <input type="email" id="registerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" required minlength="6">
+                    </div>
+                    <button type="submit" class="auth-submit">Create Account</button>
+                </form>
+                <p class="auth-switch">
+                    Already have an account? 
+                    <a href="#" id="showLogin">Sign in</a>
+                </p>
+            </div>
+
+            <div class="auth-form hidden" id="loggedInMenu">
+                <h2 class="auth-title">My Account</h2>
+                <p class="auth-subtitle" id="userGreeting">Welcome back!</p>
+                <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem;">
+                    <a href="/dashboard" class="auth-submit" style="text-align: center; text-decoration: none;">My Orders</a>
+                    <a href="/admin" class="auth-submit" id="adminMenuLink" style="display: none; text-align: center; text-decoration: none; background: var(--accent);">Admin Dashboard</a>
+                    <button type="button" class="auth-submit" id="logoutBtnModal" style="background: var(--error);">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal (Same as before) -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-overlay" id="checkoutOverlay"></div>
+        <div class="modal-content checkout-content">
+            <button class="modal-close" id="checkoutClose">&times;</button>
+            
+            <div class="checkout-container">
+                <h2 class="checkout-title">Checkout</h2>
+                
+                <div class="checkout-steps">
+                    <div class="checkout-step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Shipping</div>
+                    </div>
+                    <div class="checkout-step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Payment</div>
+                    </div>
+                    <div class="checkout-step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Review</div>
+                    </div>
+                </div>
+
+                <div class="checkout-form-step active" id="shippingStep">
+                    <h3 class="checkout-subtitle">Shipping Information</h3>
+                    <form id="shippingForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="shippingFirstName">First Name</label>
+                                <input type="text" id="shippingFirstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="shippingLastName">Last Name</label>
+                                <input type="text" id="shippingLastName" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="shippingAddress">Address</label>
+                            <input type="text" id="shippingAddress" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="shippingCity">City</label>
+                                <input type="text" id="shippingCity" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="shippingZip">ZIP Code</label>
+                                <input type="text" id="shippingZip" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="shippingCountry">Country</label>
+                            <select id="shippingCountry" required>
+                                <option value="">Select Country</option>
+                                <option value="US">United States</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="CA">Canada</option>
+                                <option value="AU">Australia</option>
+                                <option value="IN">India</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="checkout-next-btn">Continue to Payment</button>
+                    </form>
+                </div>
+
+                <div class="checkout-form-step" id="paymentStep">
+                    <h3 class="checkout-subtitle">Payment Information</h3>
+                    <form id="paymentForm">
+                        <div class="form-group">
+                            <label for="cardNumber">Card Number</label>
+                            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cardExpiry">Expiry Date</label>
+                                <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cardCVC">CVC</label>
+                                <input type="text" id="cardCVC" placeholder="123" maxlength="3" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cardName">Cardholder Name</label>
+                            <input type="text" id="cardName" required>
+                        </div>
+                        <div class="checkout-buttons">
+                            <button type="button" class="checkout-back-btn" id="backToShipping">Back</button>
+                            <button type="submit" class="checkout-next-btn">Review Order</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="checkout-form-step" id="reviewStep">
+                    <h3 class="checkout-subtitle">Review Your Order</h3>
+                    <div class="review-section">
+                        <h4>Shipping Address</h4>
+                        <div id="reviewShipping"></div>
+                    </div>
+                    <div class="review-section">
+                        <h4>Payment Method</h4>
+                        <div id="reviewPayment"></div>
+                    </div>
+                    <div class="review-section">
+                        <h4>Order Summary</h4>
+                        <div id="reviewItems"></div>
+                        <div class="review-total">
+                            <span>Total</span>
+                            <span id="reviewTotal">$0.00</span>
+                        </div>
+                    </div>
+                    <div class="checkout-buttons">
+                        <button type="button" class="checkout-back-btn" id="backToPayment">Back</button>
+                        <button type="button" class="checkout-next-btn" id="placeOrderBtn">Place Order</button>
+                    </div>
+                </div>
+
+                <div class="checkout-form-step" id="successStep">
+                    <div class="success-icon">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="success-title">Order Placed Successfully!</h3>
+                    <p class="success-message">Thank you for your purchase. You can track your order in your dashboard.</p>
+                    <div style="display: flex; gap: 1rem; justify-content: center;">
+                        <a href="/dashboard" class="checkout-next-btn" style="text-decoration: none;">View Orders</a>
+                        <button class="checkout-next-btn" id="continueShoppingBtn">Continue Shopping</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <span class="toast-message" id="toastMessage"></span>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
